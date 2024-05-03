@@ -8,7 +8,6 @@ export class ProductsService {
   constructor(private readonly productRepository: ProductRepository) {}
 
   async create(createProductDto: CreateProductDto) {
-    console.log(createProductDto, createProductDto);
     return this.productRepository.create(createProductDto);
   }
 
