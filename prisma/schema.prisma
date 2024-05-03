@@ -24,4 +24,7 @@ model Product {
   name String @unique
   stock Int 
   category String? @default("Tepiha")
+  createdAt DateTime @default(now())
+
+  @@map(name: "products")
 }
