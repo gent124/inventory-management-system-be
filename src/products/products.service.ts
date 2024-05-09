@@ -38,4 +38,32 @@ export class ProductsService {
     }
     return this.productRepository.remove(id);
   }
+
+  async searchProductsByName(searchTerm: string) {
+    return await this.productRepository.findAllProductsByName(searchTerm);
+  }
+
+  async updateProductStock(productId: number, increment: boolean) {
+    const product = await this.productRepository.findOne(productId);
+
+    if (!product) {
+      throw new NotFoundException();
+    }
+
+    if (increment) {
+      product.stock++;
+      return await this.productRepository.update(productId, product);
+    }
+
+    product.stock--;
+    return await this.productRepository.update(productId, product);
+  }
+
+  async deleteMany(ids: number[]) {
+    return await this.productRepository.deleteMany(ids);
+  }
+
+  async getOverviewStats() {
+    return await this.productRepository.getOverviewStats();
+  }
 }

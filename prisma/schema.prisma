@@ -25,6 +25,6 @@ model Product {
   stock Int 
   category String? @default("Tepiha")
   createdAt DateTime @default(now())
-
+  initialStock Int @default(0)
   @@map(name: "products")
 }
